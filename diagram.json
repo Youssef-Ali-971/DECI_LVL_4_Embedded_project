@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "author": "Uri Shaked",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 14.3,
+      "left": -5,
+      "attrs": { "env": "micropython-20220618-v1.19.1" }
+    },
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": -53.2, "left": -64.1, "attrs": {} },
+    {
+      "type": "wokwi-analog-joystick",
+      "id": "joystick2",
+      "top": -67.8,
+      "left": -177,
+      "attrs": {}
+    },
+    { "type": "wokwi-led", "id": "led1", "top": 188.4, "left": -169, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 188.4,
+      "left": -111.4,
+      "attrs": { "color": "red" }
+    },
+    { "type": "wokwi-servo", "id": "servo1", "top": 17.2, "left": 134.4, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo2", "top": 122.8, "left": 134.4, "attrs": {} },
+    {
+      "type": "wokwi-servo",
+      "id": "servo3",
+      "top": -193,
+      "left": 30.6,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servo4",
+      "top": -202.6,
+      "left": 136.2,
+      "rotate": 270,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "joystick2:SEL", "esp:D32", "violet", [ "v0" ] ],
+    [ "joystick2:VERT", "esp:D34", "blue", [ "v0" ] ],
+    [ "joystick2:HORZ", "esp:D35", "green", [ "v0" ] ],
+    [ "joystick2:VCC", "esp:VIN", "red", [ "v0" ] ],
+    [ "joystick2:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "sw1:2", "esp:D25", "orange", [ "v0" ] ],
+    [ "sw1:1", "esp:3V3", "red", [ "v9.6", "h163.2", "v153.6" ] ],
+    [ "sw1:3", "esp:GND.1", "black", [ "v28.8", "h153.8", "v38.4" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "v19.2", "h-38", "v-86.4" ] ],
+    [ "led1:A", "esp:D26", "gray", [ "v19.2", "h19.2", "v-124.8" ] ],
+    [ "led2:A", "esp:D27", "white", [ "v19.2", "h48", "v-124.8" ] ],
+    [ "led2:C", "esp:GND.2", "black", [ "v28.8", "h77.2", "v-96" ] ],
+    [ "esp:D15", "servo1:PWM", "blue", [ "h38.1", "v-0.2" ] ],
+    [ "esp:D13", "servo2:PWM", "magenta", [ "h-57.6", "v76.6", "h182.4" ] ],
+    [ "servo3:PWM", "esp:D23", "yellow", [ "v0" ] ],
+    [ "servo4:PWM", "esp:D22", "cyan", [ "v38.4", "h-67", "v19.2" ] ],
+    [ "servo3:GND", "esp:GND.2", "black", [ "v19.2", "h-124.8", "v-67.2", "h-211.2", "v259.2" ] ],
+    [ "servo4:GND", "servo3:GND", "black", [ "v28.8", "h-57.6" ] ],
+    [
+      "servo1:GND",
+      "esp:GND.1",
+      "black",
+      [ "h0", "v-57.6", "h240", "v249.6", "h-259.2", "v-96" ]
+    ],
+    [ "servo2:GND", "esp:GND.1", "black", [ "h-9.6", "v-9.6" ] ],
+    [ "servo1:V+", "esp:3V3", "red", [ "h-9.6", "v67.3" ] ],
+    [ "servo2:V+", "esp:3V3", "red", [ "h-28.8", "v9.7" ] ],
+    [
+      "servo3:V+",
+      "esp:VIN",
+      "red",
+      [
+        "v38.4",
+        "h0.1",
+        "v-9.6",
+        "h-96",
+        "v-76.8",
+        "h-57.6",
+        "v19.2",
+        "h-182.4",
+        "v249.6",
+        "h19.2"
+      ]
+    ],
+    [ "servo4:V+", "servo3:V+", "red", [ "v19.2", "h-76.7" ] ]
+  ],
+  "dependencies": {}
+}
