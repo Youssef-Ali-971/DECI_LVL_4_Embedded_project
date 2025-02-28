@@ -55,7 +55,6 @@ while True:
     led1.value(camera_active)
     led2.value(not camera_active)
 
-    # Move the appropriate servo
     move_servo(camera_active, place, step)
 
     sleep(0.1)
