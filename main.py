@@ -3,18 +3,18 @@ from time import sleep
 from machine import Pin
 from servo import Servo
 
-# Initialize hardware components
+
 slide_switch = Pin(25, Pin.IN)
 led1 = Pin(26, Pin.OUT, value=0)
 led2 = Pin(27, Pin.OUT, value=0)
 
-# Servos
+
 servo1 = Servo(23)
 servo2 = Servo(22)
 servo3 = Servo(15)
 servo4 = Servo(13)
 
-# Joystick
+
 joystick = Joystick(35, 34, 'interrupt', 32)
 step = 1
 
@@ -41,7 +41,7 @@ def move_servo(camera_active, direction, step):
 
     if direction in servo_map:
         servo, action = servo_map[direction]
-        getattr(servo, action)(step)  # Dynamically call left() or right()
+        getattr(servo, action)(step)
 
 while True:
     place, pressed_value = joystick.read()
@@ -50,9 +50,8 @@ while True:
     if pressed_value:
         step = get_servo_step()
 
-    camera_active = slide_switch.value() == 1  # True for Camera 1, False for Camera 2
+    camera_active = slide_switch.value() == 1  
 
-    # LED indication
     led1.value(camera_active)
     led2.value(not camera_active)
 
